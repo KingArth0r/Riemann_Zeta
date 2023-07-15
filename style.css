@@ -1,0 +1,113 @@
+body {
+    background-color: #000000;
+    color: violet;
+    font-family: Arial, sans-serif;
+  }
+  
+  .container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 40px;
+  }
+  
+  h1 {
+    font-size: 36px;
+    font-weight: bold;
+    text-align: center;
+  }
+  
+  p {
+    font-size: 18px;
+    line-height: 1.5;
+  }
+  
+  .section {
+    margin-bottom: 40px;
+  }
+  
+  /* Header Styling */
+  header {
+    padding: 20px;
+    text-align: center;
+    background-color: #000000;
+  }
+  
+  .logo {
+    font-size: 24px;
+    font-weight: bold;
+    color: #ffffff;
+  }
+  
+  /* Navigation Styling */
+  nav {
+    text-align: center;
+    margin-top: 20px;
+  }
+  
+  nav ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+  }
+  
+  nav ul li {
+    display: inline-block;
+    margin-right: 10px;
+  }
+  
+  nav ul li a {
+    color: #ffffff;
+    text-decoration: none;
+    font-size: 16px;
+    padding: 10px 20px;
+    border: 1px solid #ffffff;
+    border-radius: 20px;
+  }
+  
+  nav ul li a:hover {
+    background-color: #ffffff;
+    color: #000000;
+  }
+  
+  /* Footer Styling */
+  footer {
+    padding: 20px;
+    text-align: center;
+    background-color: #000000;
+    color: #ffffff;
+  }
+  
+  /* Astronomical Styling */
+  .astronomical {
+    text-align: center;
+  }
+  
+  .astronomical img {
+    width: 200px;
+    height: auto;
+    margin-bottom: 20px;
+  }
+  
+  .astronomical h2 {
+    font-size: 24px;
+  }
+  
+  .astronomical p {
+    font-size: 16px;
+  }
+  
+  .astronomical .button {
+    display: inline-block;
+    background-color: #ffffff;
+    color: #000000;
+    font-size: 16px;
+    padding: 10px 20px;
+    border-radius: 20px;
+    text-decoration: none;
+    margin-top: 20px;
+  }
+  
+  .astronomical .button:hover {
+    background-color: #000000;
+    color: #ffffff;
+  }

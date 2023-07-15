@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Riemann Zeta Function</title>
+  <meta name = "author" content = "Kevin Williams">
+  <meta name = "cs-username" content = "kwilliams">
+  <meta name = "description" content = "Riemann zeta function">
+
+  <!--Could add more meta tags-->
+
+  <link rel = "stylesheet" href = "style.css">
+  <script src="RiemannZeta.js"></script>
+
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}});
+  </script>
+  <script type="text/javascript"
+    src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+  </script>
+  
+</head>
+<body>
+    <h1>
+        Evaluating the Riemann Zeta Function
+    </h1>
+    <h2>
+        Introduction
+    </h2>
+    <p>
+        The Riemann Zeta function $\zeta(s)$ is typically defined as the infinite series
+        $$\zeta(s) = \sum_{n = 0}^{\infty} \frac{1}{n^s} $$
+        This series converges for all complex numbers $s$ with real part greater than $1$.
+    </p>
+    <p>
+        However, when people talk about the Reiman Zeta function, they usually mean the analytic continuation of it
+        which would increase its domain to $\mathbb{C}\setminus \{1}$ where $s = 1$ would be the only singularity.
+    </p>
+</body>
