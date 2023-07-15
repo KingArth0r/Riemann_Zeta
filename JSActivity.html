@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Riemann Zeta Function</title>
+  <meta name = "author" content = "Kevin Williams">
+  <meta name = "cs-username" content = "kwilliams">
+  <meta name = "description" content = "Riemann zeta function">
+
+  <!--Could add more meta tags-->
+
+  <link rel = "stylesheet" href = "style.css">
+  <script src="RiemannZeta.js"></script>
+
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}});
+  </script>
+  <script type="text/javascript"
+    src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+  </script>
+  
+</head>
+<body>
+    <h1>
+        Evaluating the Riemann Zeta Function
+    </h1>
+    <h2>
+        Introduction
+    </h2>
+    <p>
+        The Riemann Zeta function $\zeta(s)$ is typically defined as the infinite series
+        $$\zeta(s) = \sum_{n = 0}^{\infty} \frac{1}{n^s} $$
+        This series converges for all complex numbers $s$ with real part greater than $1$.
+    </p>
+    <p>
+        However, when people talk about the Reiman Zeta function, they usually mean the analytic continuation of it
+        which would increase its domain to almost all complex numbers where $s = 1$ would be the only singularity.
+    </p>
+    <p>
+        The Reimann Zeta function satisfies the functional equation 
+        $$\zeta(s) = 2^s\pi^{s-1}\sin\left(\frac{\pi s}{2}\right)\Gamma(1 - s)\zeta(1 - s) $$
+        A proof of this identity can be found <a href = "https://en.wikipedia.org/wiki/Riemann_zeta_function">here.</a>
+    </p>
+    <p>
+        Helmut Hasse proved an identity for a globally convergent series version of the function 
+        $$\zeta(s) = \frac{1}{s - 1} \sum_{n = 0}^\infty \frac{1}{n+1}\sum_{k = 0}^n \binom{n}{k}\frac{(-1)^k}{(k+1)^{s-1}}$$
+        However this series version of the zeta function is not very practical when it comes to computing values due to its slow convergence.
+    </p>
+    <p>
+        The classical way to evaluate $\zeta(s)$ is the following identity
+        $$\zeta(s) = \sum_{j = 1}^{n-1} j^{-s} + \frac{1}{2}n^{-s} + \frac{n^{1-s}}{s - 1} + \sum_{k = 1}^m T_{k,n}(s) + E_{m,n} $$
+        where $$T_{k,n}(s) = \frac{B_{2k}}{(2k!)}n^{1 - s - 2k}\prod_{j = 0}^{2k - 2}(s + j) $$
+        with $B_{2k}$ being the $2k^{\text{th}}$ <a href = "https://en.wikipedia.org/wiki/Bernoulli_number">Bernoulli number.</a>
+        The error term is given by 
+        $$|E_{m,n}(s)| < \left|\frac{s + 2m + 1}{\text{Re}(s) + 2m + 1}T_{m+1,\; n}(s)\right| $$
+    </p>
+    <p>The modern approach to evaluating the zeta function is using the <a href = "https://en.wikipedia.org/wiki/Odlyzko%E2%80%93Sch%C3%B6nhage_algorithm">Odlykzo-Sch&ouml;nhage algorithm</a></p>
+    <p>However, this algorithm has never been implemented in javascript and I don't feel like being the first right now </p>
+    <p>The zeta function does have precise formulas for various special values 
+        $$\zeta(2n) = (-1)^{n+1}\frac{(2\pi)^{2n}B_{2n}}{2(n!)} $$
+        However, for the sake of consistency, the program below will just use the same approximation from above
+    </p>
+
+
+</body>
