@@ -40,6 +40,7 @@
         $$\zeta(s) = 2^s\pi^{s-1}\sin\left(\frac{\pi s}{2}\right)\Gamma(1 - s)\zeta(1 - s) $$
         A proof of this identity can be found <a href = "https://en.wikipedia.org/wiki/Riemann_zeta_function">here.</a>
     </p>
+    <h2>Evaluating $\zeta(s)$</h2>
     <p>
         Helmut Hasse proved an identity for a globally convergent series version of the function 
         $$\zeta(s) = \frac{1}{s - 1} \sum_{n = 0}^\infty \frac{1}{n+1}\sum_{k = 0}^n \binom{n}{k}\frac{(-1)^k}{(k+1)^{s-1}}$$
@@ -58,6 +59,24 @@
     <p>The zeta function does have precise formulas for various special values 
         $$\zeta(2n) = (-1)^{n+1}\frac{(2\pi)^{2n}B_{2n}}{2(n!)} $$
         However, for the sake of consistency, the program below will just use the same approximation from above
+    </p>
+    <h2>Try it out!</h2>
+
+
+    <h2>Riemann Hypothesis</h2>
+    <p>
+        The Riemann Zeta function has many deep connections between seemingly unrelated parts of mathematics. 
+        Most of these connections stem from the unproven Rienmann Hypothesis which is one of the biggest unsolves math problems. 
+        Solving it would solve the question about the distribution of prime numbers. 
+        It would give bounds on many import functions from number theory like the prime counting function, M&ouml;bius function, and the sigma function.
+    </p>
+    <p>
+        The Riemann Hypothesis states that 
+        $$\zeta(s) = 0 \implies s = -2k \; k\in \mathbb{N} \text{ or } \text{Re}(s) = \frac{1}{2} $$
+    </p>
+
+    <p>The reason the zeta function has such a deep connection to prime numbers is because of the formula 
+        $$\zeta(s) = \prod_{p \text{ prime}}\frac{1}{1 - p^{-s}} $$
     </p>
 
 
