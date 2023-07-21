@@ -66,22 +66,11 @@
     </p>
     <br>
     <h2>Try it out! (integers other than 1 please)</h2>
-    <p>Enter a positive even integer (n) to calculate $\zeta(2n)$:</p>
+    <p>Enter a number $n$ to calculate $\zeta(n)$:</p>
   <input type="text" id="inputNumber">
   <button onclick="calculateZeta()">Calculate</button>
   <p id="result"></p>
-
   <script>
-    function factorial(num) {
-      if (num === 0 || num === 1) return 1;
-
-      let result = 1;
-      for (let i = 2; i <= num; i++) {
-        result *= i;
-      }
-      return result;
-    }
-
     // Helper function to calculate binomial coefficient (n choose k)
     function binomialCoefficient(n, k) {
       if (k === 0 || k === n) return 1;
@@ -110,25 +99,46 @@
       return bernoulli[n];
     }
 
-    // Function to compute the formula ζ(2n)
-    function zeta2n(n) {
-      const sign = (-1) ** (n + 1);
-      const piPow = Math.pow(2 * Math.PI, 2 * n);
-      const bernoulliNumber2n = bernoulliNumber(2 * n);
-      const factorial2n = 2 * n === 0 ? 1 : 2 * n * factorial(2 * n - 1);
+    // Function to compute the formula ζ(2n) or ζ(-n) based on input
+    function zeta(n) {
+      if (n > 1 && n%2 == 0) {
+        // ζ(2n) for positive even integers
+        const sign = (-1) ** (n/2 + 1);
+        const piPow = Math.pow(2 * Math.PI, n);
+        const bernoulliNumber2n = bernoulliNumber(n);
+        const factorial2n = factorial(n);
 
-      return sign * (piPow * bernoulliNumber2n) / (2 * factorial2n);
+        return sign * (piPow * bernoulliNumber2n) / (2 * factorial2n);
+      } else if (Number.isInteger(n) && n <= 0) {
+        // ζ(-n) for negative odd integers
+        const bernoulliNumberNegN = bernoulliNumber(-n + 1);
+        return (-1) * (bernoulliNumberNegN / (-n + 1));
+      } else {
+        // Error message for decimal inputs or positive odd integers
+        return "I haven't implemented this :(";
+      }
+    }
+
+    // Helper function to calculate the factorial of a number
+    function factorial(num) {
+      if (num === 0 || num === 1) return 1;
+
+      let result = 1;
+      for (let i = 2; i <= num; i++) {
+        result *= i;
+      }
+      return result;
     }
 
     function calculateZeta() {
       const inputElement = document.getElementById('inputNumber');
-      const input = parseInt(inputElement.value);
+      const input = parseFloat(inputElement.value);
 
-      if (isNaN(input) || input <= 0) {
+      if (Number.isNaN(input) || input == 1 || !Number.isInteger(input)) {
         document.getElementById('result').textContent = "I haven't implemented this :(";
       } else {
-        const result = zeta2n(input);
-        document.getElementById('result').textContent = `ζ(2n) for n = ${input} is: ${result}`;
+        const result = zeta(input);
+        document.getElementById('result').textContent = `ζ(${input}) is: ${result}`;
       }
     }
   </script>
