@@ -9,7 +9,8 @@
   <!--Could add more meta tags-->
 
   <link rel = "stylesheet" href = "style.css">
-  <script src="RiemannZeta.js"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjs/11.8.2/math.js"></script>
 
   <script type="text/x-mathjax-config">
     MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}});
@@ -17,6 +18,7 @@
   <script type="text/javascript"
     src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
   </script>
+  
   
 </head>
 <body>
@@ -57,11 +59,80 @@
     <p>The modern approach to evaluating the zeta function is using the <a href = "https://en.wikipedia.org/wiki/Odlyzko%E2%80%93Sch%C3%B6nhage_algorithm">Odlykzo-Sch&ouml;nhage algorithm</a></p>
     <p>However, this algorithm has never been implemented in javascript and I don't feel like being the first right now </p>
     <p>The zeta function does have precise formulas for various special values 
-        $$\zeta(2n) = (-1)^{n+1}\frac{(2\pi)^{2n}B_{2n}}{2(n!)} $$
-        However, for the sake of consistency, the program below will just use the same approximation from above
+        $$\zeta(2n) = (-1)^{n+1}\frac{(2\pi)^{2n}B_{2n}}{2(n!)} \quad n \geq 1$$
+        And for $n\leq 0$ we have 
+        $$\zeta(-n) = (-1)\frac{B_{n+1}}{n+1} $$
+        For the sake of this assignment, I will just be implementing these formulas as I don't feel like being the first to implement the fancy algorithms in javascript.
     </p>
-    <h2>Try it out!</h2>
+    <br>
+    <h2>Try it out! (integers other than 1 please)</h2>
+    <p>Enter a positive even integer (n) to calculate $\zeta(2n)$:</p>
+  <input type="text" id="inputNumber">
+  <button onclick="calculateZeta()">Calculate</button>
+  <p id="result"></p>
 
+  <script>
+    function factorial(num) {
+      if (num === 0 || num === 1) return 1;
+
+      let result = 1;
+      for (let i = 2; i <= num; i++) {
+        result *= i;
+      }
+      return result;
+    }
+
+    // Helper function to calculate binomial coefficient (n choose k)
+    function binomialCoefficient(n, k) {
+      if (k === 0 || k === n) return 1;
+      if (k > n) return 0;
+
+      let res = 1;
+      for (let i = 1; i <= k; i++) {
+        res *= (n - i + 1) / i;
+      }
+      return Math.round(res);
+    }
+
+    // Helper function to calculate Bernoulli numbers using the recursive definition
+    function bernoulliNumber(n) {
+      if (n === 0) return 1;
+
+      const bernoulli = Array(n + 1).fill(0);
+      bernoulli[0] = 1;
+
+      for (let i = 1; i <= n; i++) {
+        for (let j = 0; j < i; j++) {
+          bernoulli[i] -= binomialCoefficient(i, j) * bernoulli[j] / (i - j + 1);
+        }
+      }
+
+      return bernoulli[n];
+    }
+
+    // Function to compute the formula ζ(2n)
+    function zeta2n(n) {
+      const sign = (-1) ** (n + 1);
+      const piPow = Math.pow(2 * Math.PI, 2 * n);
+      const bernoulliNumber2n = bernoulliNumber(2 * n);
+      const factorial2n = 2 * n === 0 ? 1 : 2 * n * factorial(2 * n - 1);
+
+      return sign * (piPow * bernoulliNumber2n) / (2 * factorial2n);
+    }
+
+    function calculateZeta() {
+      const inputElement = document.getElementById('inputNumber');
+      const input = parseInt(inputElement.value);
+
+      if (isNaN(input) || input <= 0) {
+        document.getElementById('result').textContent = "I haven't implemented this :(";
+      } else {
+        const result = zeta2n(input);
+        document.getElementById('result').textContent = `ζ(2n) for n = ${input} is: ${result}`;
+      }
+    }
+  </script>
+    
 
     <h2>Riemann Hypothesis</h2>
     <p>
@@ -78,6 +149,8 @@
     <p>The reason the zeta function has such a deep connection to prime numbers is because of the formula 
         $$\zeta(s) = \prod_{p \text{ prime}}\frac{1}{1 - p^{-s}} $$
     </p>
+
+    
 
 
 </body>

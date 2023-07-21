@@ -1,4 +1,4 @@
-const math = require('mathjs');
+
 function calculateB(n) {
     var b = new Array(n + 1);
     b[0] = 1;
@@ -19,7 +19,7 @@ function calculateB(n) {
   
 // Helper function to calculate binomial coefficient (n choose k)
 function binomial(n, k) {
-    if (k === 0 || k === n) {
+    if (k == 0 || k == n) {
       return 1;
     } else {
       var numerator = 1;
@@ -46,7 +46,7 @@ function calculateTkns(s, k, n, bernoulliArray) {
   
  // Helper function to calculate factorial
 function factorial(num) {
-    if (num === 0 || num === 1) {
+    if (num == 0 || num == 1) {
       return 1;
     } else {
       var result = 1;
@@ -56,7 +56,7 @@ function factorial(num) {
       return result;
     }
 }
-
+/*
 function calculateZeta(s, n, m) {
     let zeta = math.complex(0, 0);
   
@@ -74,4 +74,5 @@ function calculateZeta(s, n, m) {
   
     return zeta;
   }
+  */
   
